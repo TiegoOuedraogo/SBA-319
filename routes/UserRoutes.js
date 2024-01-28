@@ -8,6 +8,9 @@ router.get('/', userController.getAllUsers);
 // Create a new user
 router.post('/', userController.createUser);
 
+// Get users by id
+router.get('/:id', userController.getUserById);
+
 // Update a user
 router.patch('/:id', userController.updateUser);
 
@@ -15,3 +18,6 @@ router.patch('/:id', userController.updateUser);
 router.delete('/:id', userController.deleteUser);
 
 module.exports = router;
+
+
+//user ID   65b56d4fe78c1f21830bd049

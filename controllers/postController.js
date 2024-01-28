@@ -19,6 +19,20 @@ exports.createPost = async (req, res) => {
     }
 };
 
+exports .getPostsByUserId = async(req,res)=>{
+    try{
+       //user id
+       const userId = req.params.userId;
+       const userPosst = await Post.find({author: userId}).populate('author');
+       if(!userPosst || userPosst.length ===0){
+        return res.status(404).send({message:`No post found with giving user id`})
+       }
+       res.json(userPosst);
+
+    }catch(error){
+        res.status(500).send(error)
+    }
+}
 exports.updatePost = async (req, res) => {
     try {
         const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });

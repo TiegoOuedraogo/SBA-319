@@ -9,6 +9,23 @@ exports.createComment = async (req, res) => {
         res.status(400).send(error);
     }
 };
+
+exports .getCommentsByUserId = async(req,res)=>{
+    try{
+       //user id
+       const userId = req.params.userId;
+       const userComments = await Comment.find({author: userId}).populate('author');
+       console.log(userComments)
+       if(!userComments || userComments.length ===0){
+        return res.status(404).send({message:`No post found with giving user id`})
+       }
+       res.json(userComments);
+
+    }catch(error){
+        res.status(500).send(error)
+    }
+}
+
 exports.getCommentById = async (req, res) => {
     // console.log("line 16",req.params)
     try {

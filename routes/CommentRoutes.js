@@ -17,4 +17,7 @@ router.patch('/:id', commentController.updateComment);
 // Delete a comment
 router.delete('/:id', commentController.deleteComment);
 
+router.get(':/userId', commentController.getCommentsByUserId)
+
+
 module.exports = router;
